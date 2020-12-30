@@ -58,12 +58,13 @@
           </el-select>
         </el-form-item>
         <el-form-item label="规格属性" label-width="80px">
-          <el-select v-model="user.specsattr">
+          <el-select v-model="user.specsattr" multiple>
             <el-option
-              v-for="item in showSpecsAttr"
-              :key="item"
+              v-for="(item,index) in showSpecsAttr"
+              :key="index"
               :label="item"
               :value="item"
+              
             ></el-option>
           </el-select>
         </el-form-item>
@@ -93,6 +94,7 @@
         >
         <el-button type="primary" v-else @click="updata">修改</el-button>
       </span>
+      
     </el-dialog>
   </div>
 </template>
@@ -165,8 +167,10 @@ export default {
       this.getShowSpecsAttr();
     },
     getShowSpecsAttr() {
+      
       let obj = this.specsList.find(item => item.id == this.user.specsid);
-      this.showSpecsAttr = obj ? obj.arres : [];
+      this.showSpecsAttr = obj ? obj.attrs : [];
+      console.log(this.showSpecsAttr)
     },
     //关闭弹框
     cancel() {
@@ -212,8 +216,6 @@ export default {
           successalert(res.data.msg);
           this.cancel();
           this.empty();
-          this.reqList();
-          this.reqTotal();
           this.reqList();
           this.reqTotal();
         }

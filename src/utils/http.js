@@ -368,3 +368,44 @@ export let reqGoodsCount = () => {
         method: 'get'
     })
 }
+/*******************************************/
+/****************秒杀管理***********************/
+//添加
+export let reqSeckAdd = (user) => {
+    return axios({
+        url: baseUrl + '/api/seckadd',
+        method: 'post',
+        data: qs.stringify(user)
+    })
+}
+//列表
+export let reqSeckList = () => {
+    return axios({
+        url: baseUrl + '/api/secklist',
+        method: 'get'
+    })
+}
+//详情
+export let reqSeckInfo = (obj) => {
+    return axios({
+        url: baseUrl + '/api/seckinfo',
+        method: 'get',
+        params: obj
+    })
+}
+//修改
+export let reqSeckEdit = (user) => {
+    return axios({
+        url: baseUrl + '/api/seckedit',
+        method: 'post',
+        data: qs.stringify(user)
+    })
+}
+//删除
+export let reqSeckDel = (obj) => {
+    return axios({
+        url: baseUrl + '/api/seckdelete',
+        method: 'post',
+        data: obj
+    })
+}
