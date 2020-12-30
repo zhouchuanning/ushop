@@ -1,21 +1,15 @@
-# ushop
+### 首页
 
-> A Vue.js project
+没做
 
-## Build Setup
+### 菜单管理
 
-``` bash
-# install dependencies
-npm install
+已做完
 
-# serve with hot reload at localhost:8080
-npm run dev
+### 商城管理
 
-# build for production with minification
-npm run build
+秒杀没做
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+### 其他
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+守卫和验证没有加
