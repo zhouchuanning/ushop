@@ -1,138 +1,370 @@
 import axios from 'axios'
+import qs from "qs"
 import Vue from 'vue'
-import { Toast } from 'vant'
-import router from '../router'
-import qs from 'qs'
-let baseUrl = '/api'
-Vue.prototype.$pre = ' http://localhost:3000'
+import { erroralert } from './alert'
 
-//请求头
-// axios.interceptors.request.use(req=>{
-//   if(req.url!=baseUrl+'/api/login'&&req.url!=baseUrl+'/api/register'){
-//     req.headers.authorization=JSON.parse(localStorage.getItem('userInfo')).token
-//   }
-// })
-//弹框信息
-axios.interceptors.response.use((res) => {
-  if (res.data.code !== 200) {
-    Toast(res.data.msg)
-  }
-  if (res.data.msg == '登录已过期或访问权限受限') {
-    router.push('/login')
-  }
-  return res
-})
-//登录接口
-export let reqLogin = (user) => {
-  return axios({
-    url: baseUrl + '/api/login',
-    method: 'post',
-    data: qs.stringify(user)
-  })
-}
-//注册
-export let reqRegister = (user) => {
-  return axios({
-    url: baseUrl + '/api/register',
-    method: 'post',
-    data: qs.stringify(user)
-  })
-}
-//轮播图
-export let reqBanner = () => {
-  return axios({
-    url: baseUrl + '/api/bannerlist',
-    method: 'get',
-    headers: {
-      authorization: JSON.parse(localStorage.getItem("userInfo")).token
+let baseUrl = '/api'
+Vue.prototype.$pre = 'http://localhost:3000'
+
+//响应拦截
+axios.interceptors.response.use(res => {
+    console.group('本次请求地址是：' + res.config.url)
+    console.log(res)
+    console.groupEnd()
+    if (res.data.code !== 200) {
+        erroralert(res.data.msg)
     }
-  })
+    if (!res.data.list) {
+        res.data.list = []
+    }
+    return res
+})
+//带有文件参数转换
+function dataToFromData(user) {
+    let data = new FormData()
+    for (let i in user) {
+        data.append(i, user[i])
+    }
+    return data
 }
-//首页商品数据
-export let reqHomeGoods = () => {
-  return axios({
-    url: baseUrl + '/api/getindexgoods',
-    method: 'get'
-  })
+
+//菜单列表
+export let reqMuneList = () => {
+    return axios({
+        url: baseUrl + '/api/menulist',
+        method: 'get',
+        params: {
+            istree: true
+        }
+    })
+}
+// 菜单添加
+export let reqMuneAdd = (user) => {
+    return axios({
+        url: baseUrl + '/api/menuadd',
+        method: 'post',
+        data: qs.stringify(user)
+    })
+}
+
+//菜单修改
+export let reqMuneEdit = (user) => {
+    return axios({
+        url: baseUrl + '/api/menuedit',
+        method: 'post',
+        data: qs.stringify(user)
+    })
+}
+
+//菜单删除
+export let reqMuneDele = (obj) => {
+    return axios({
+        url: baseUrl + '/api/menudelete',
+        method: 'post',
+        data: obj
+    })
+}
+
+//菜单获取
+export let reqMuneInfo = (obj) => {
+    return axios({
+        url: baseUrl + '/api/menuinfo',
+        method: 'get',
+        params: obj
+    })
+}
+
+//角色列表
+export let reqRoleList = () => {
+    return axios({
+        url: baseUrl + '/api/rolelist',
+        method: 'get'
+    })
+}
+
+//角色添加
+export let reqRoleAdd = (user) => {
+    return axios({
+        url: baseUrl + '/api/roleadd',
+        method: 'post',
+        data: qs.stringify(user)
+    })
+}
+
+//角色一条
+export let reqRoleInfo = (user) => {
+    return axios({
+        url: baseUrl + '/api/roleinfo',
+        method: 'get',
+        params: user
+    })
+}
+
+//角色修改
+export let reqRoleEdit = (user) => {
+    return axios({
+        url: baseUrl + '/api/roleedit',
+        method: 'post',
+        data: qs.stringify(user)
+    })
+}
+
+//角色删除
+export let reqRoleDel = (user) => {
+    return axios({
+        url: baseUrl + '/api/roledelete',
+        method: "post",
+        data: qs.stringify(user)
+    })
+}
+
+//管理员添加
+export let reqAdminAdd = (user) => {
+    return axios({
+        url: baseUrl + '/api/useradd',
+        method: 'post',
+        data: qs.stringify(user)
+    })
+}
+//管理员列表
+export let reqAdminList = (obj) => {
+    return axios({
+        url: baseUrl + '/api/userlist',
+        method: "get",
+        params: obj
+    })
+}
+//管理员详情
+export let reqAdminInfo = (id) => {
+    return axios({
+        url: baseUrl + '/api/userinfo',
+        method: 'get',
+        params: { uid: id }
+    })
+}
+//管理员修改
+export let reqAdminEdit = (user) => {
+    return axios({
+        url: baseUrl + '/api/useredit',
+        method: 'post',
+        data: qs.stringify(user)
+    })
+}
+//管理员删除
+export let reqAdminDale = (user) => {
+    return axios({
+        url: baseUrl + '/api/userdelete',
+        method: 'post',
+        data: qs.stringify(user)
+    })
+}
+
+//管理员总数
+export let reqAdminCount = () => {
+    return axios({
+        url: baseUrl + '/api/usercount'
+    })
+}
+//商品添加
+export let reqCateAdd = (user) => {
+    return axios({
+        url: baseUrl + '/api/cateadd',
+        method: 'post',
+        data: dataToFromData(user)
+    })
+}
+//商品列表
+export let reqCateList = (obj) => {
+    return axios({
+        url: baseUrl + '/api/catelist',
+        method: "get",
+        params: obj
+    })
+}
+//商品详情
+export let reqCateInfo = (obj) => {
+    return axios({
+        url: baseUrl + '/api/cateinfo',
+        method: 'get',
+        params: obj
+    })
+}
+//商品修改
+export let reqCateEdit = (user) => {
+    return axios({
+        url: baseUrl + '/api/cateedit',
+        method: 'post',
+        data: dataToFromData(user)
+    })
+}
+//商品删除
+export let reqCateDel = (user) => {
+    return axios({
+        url: baseUrl + '/api/catedelete',
+        method: 'post',
+        data: qs.stringify(user)
+    })
+}
+/*****************会员管理 *******************************/
+//列表
+export let reqMemberList = () => {
+    return axios({
+        url: baseUrl + "/api/memberlist",
+        method: 'get'
+    })
 }
 //详情
-export let reqDetail = (id) => {
-  return axios({
-    url: baseUrl + '/api/getgoodsinfo',
-    method: 'get',
-    params: {
-      id: id
-    }
-  })
+export let reqMemberInfo = (obj) => {
+    return axios({
+        url: baseUrl + '/api/memberinfo',
+        method: 'get',
+        params: obj
+    })
 }
-//加入购物车
-export let reqShopAdd = (obj) => {
-  return axios({
-    url: baseUrl + '/api/cartadd',
-    method: 'post',
-    data: obj,
-    headers: {
-      authorization: JSON.parse(localStorage.getItem("userInfo")).token
-    }
-  })
+//修改
+export let reqMemberEdit = (user) => {
+    return axios({
+        url: baseUrl + "/api/memberedit",
+        method: 'post',
+        data: qs.stringify(user)
+    })
 }
-//分类
-export let reqShopCate = () => {
-  return axios({
-    url: baseUrl + '/api/getcatetree',
-    method: 'get',
-    headers: {
-      authorization: JSON.parse(localStorage.getItem("userInfo")).token
-    }
-  })
+/**************************************************/
+/*****************轮播图管理*********************/
+//轮播图添加
+export let reqBannerAdd = (user) => {
+    return axios({
+        url: baseUrl + '/api/banneradd',
+        method: 'post',
+        data: dataToFromData(user)
+    })
 }
-//分类列表
-export let cateList = (fid) => {
-  return axios({
-    url: baseUrl + '/api/getgoods',
-    method: 'get',
-    params: {
-      fid: fid
-    },
-    headers: {
-      authorization: JSON.parse(localStorage.getItem("userInfo")).token
-    }
-  })
+//列表
+export let reqBannerList = () => {
+    return axios({
+        url: baseUrl + '/api/bannerlist',
+        method: 'get'
+    })
 }
-//购物车列表
-export let reqShopList = () => {
-  return axios({
-    url: baseUrl + '/api/cartlist',
-    method: 'get',
-    params: {
-      uid: JSON.parse(localStorage.getItem('userInfo')).uid
-    },
-    headers: {
-      authorization: JSON.parse(localStorage.getItem("userInfo")).token
-    }
-  })
+//详情
+export let reqBannerInfo = (obj) => {
+    return axios({
+        url: baseUrl + '/api/bannerinfo',
+        method: 'get',
+        params: obj
+    })
 }
-//购物车修改
-export let reqShopDit = (obj) => {
-  return axios({
-    url: baseUrl + '/api/cartedit',
-    method: 'post',
-    data: obj,
-    headers: {
-      authorization: JSON.parse(localStorage.getItem("userInfo")).token
-    }
-  })
+//修改
+export let reqBannerEdit = (user) => {
+    return axios({
+        url: baseUrl + '/api/banneredit',
+        method: 'post',
+        data: dataToFromData(user)
+    })
 }
-//购物车删除
-export let reqShopDel = (id) => {
-  return axios({
-    url: baseUrl + '/api/cartdelete',
-    method: 'post',
-    data: {
-      id: id
-    },
-    headers: {
-      authorization: JSON.parse(localStorage.getItem("userInfo")).token
-    }
-  })
+//删除
+export let reqBannerDel = (obj) => {
+    return axios({
+        url: baseUrl + '/api/bannerdelete',
+        method: 'post',
+        data: obj
+    })
+}
+/**************************************************/
+/***************商品规格***************************/
+//添加
+export let reqSpecsAdd = (user) => {
+    return axios({
+        url: baseUrl + '/api/specsadd',
+        method: 'post',
+        data: qs.stringify(user)
+    })
+}
+//列表
+export let reqSpecsList = (obj) => {
+    return axios({
+        url: baseUrl + '/api/specslist',
+        method: 'get',
+        params: obj
+    })
+}
+//详情
+export let reqSpecsInfo = (obj) => {
+    return axios({
+        url: baseUrl + '/api/specsinfo',
+        method: 'get',
+        params: obj
+    })
+}
+//修改
+export let reqSpescEdit = (user) => {
+    return axios({
+        url: baseUrl + '/api/specsedit',
+        method: 'post',
+        data: qs.stringify(user)
+    })
+}
+//删除
+export let reqSpescDel = (obj) => {
+    return axios({
+        url: baseUrl + '/api/specsdelete',
+        method: 'post',
+        data: obj
+    })
+}
+//总数
+export let reqSpescCount = () => {
+    return axios({
+        url: baseUrl + '/api/specscount',
+        method: 'get'
+    })
+}
+/**********************************************/
+/*********************商品管理*****************/
+//添加
+export let reqGoodsAdd = (user) => {
+    return axios({
+        url: baseUrl + '/api/goodsadd',
+        method: 'post',
+        data: dataToFromData(user)
+    })
+}
+//列表
+export let reqGoodsList = (user) => {
+    return axios({
+        url: baseUrl + '/api/goodslist',
+        method: 'get',
+        params: user
+    })
+}
+//详情
+export let reqGoodsInfo = (obj) => {
+    return axios({
+        url: baseUrl + '/api/goodsinfo',
+        method: "get",
+        params: obj
+    })
+}
+//修改
+export let reqGoodSEdit = (user) => {
+    return axios({
+        url: baseUrl + '/api/goodsedit',
+        method: 'post',
+        data: dataToFromData(user)
+    })
+}
+//删除
+export let reqGoodsDel = (obj) => {
+    return axios({
+        url: baseUrl + '/api/goodsdelete',
+        method: 'post',
+        data: obj
+    })
+}
+//总数
+export let reqGoodsCount = () => {
+    return axios({
+        url: baseUrl + '/api/goodscount',
+        method: 'get'
+    })
 }

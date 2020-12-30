@@ -1,45 +1,44 @@
 <template>
   <div>
-    <el-button type="primary" round @click="willadd">添加</el-button>
-    <v-list :list="list" @init="init" @edit="edit($event)" class="con"></v-list>
-    <v-add :info="info" @init="init" :list="list" ref="add"></v-add>
+    <el-button type="primary" @click="willadd">添加</el-button>
+    <v-list :list="list" @init="init" @edit="edit($event)"></v-list>
+    <v-form :list="list" :info="info" @init="init" ref="add"></v-form>
   </div>
 </template>
 
 <script>
 import vList from "./components/list";
-import vAdd from "./components/add";
-import { reqCateList } from "../../utils/http";
+import vForm from "./components/form";
+import { reqRoleList } from "../../utils/http";
 export default {
   components: {
     vList,
-    vAdd
+    vForm
   },
   directives: {},
   data() {
     return {
-      list: [],
       info: {
         isshow: false,
-        isadd: false
-      }
+        isadd: true
+      },
+      list: []
     };
   },
   mounted() {
     this.init();
   },
   methods: {
+    willadd() {
+      this.info.isshow = true;
+      this.info.isadd = true;
+    },
     init() {
-      reqCateList({istree:true}).then(res => {
-        console.log(res);
+      reqRoleList().then(res => {
         if (res.data.code == 200) {
           this.list = res.data.list;
         }
       });
-    },
-    willadd() {
-      this.info.isshow = true;
-      this.info.isadd = true;
     },
     edit(id) {
       this.info.isshow = true;
@@ -51,7 +50,4 @@ export default {
 </script>
 
 <style scoped>
-.con {
-  padding-top: 20px;
-}
 </style>

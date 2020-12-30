@@ -1,78 +1,56 @@
 <template>
-  <div class="login">
-    <p>账户：</p>
-    <input type="text" v-model="user.phone">
-    <p>密码：</p>
-    <input type="text" v-model="user.password">
-    <button @click='login'>登录</button>
-    <router-link class='reg' to="/register">注册</router-link>
+  <div class="back">
+    <div class="con">
+      <h2>登录</h2>
+      <el-input v-model="name" placeholder="请输入账户" clearable></el-input>
+      <el-input placeholder="请输入密码" v-model="pass" show-password clearable></el-input>
+      <el-button type="primary" round>登录</el-button>
+    </div>
   </div>
 </template>
 
 <script>
-import {Toast} from 'vant'
-import {reqLogin} from '@/utils/http.js'
-import axios from 'axios'
 export default {
+  name: "login",
+  components: {},
+  directives: {},
   data() {
     return {
-      user: {
-        phone: "",
-        password: ""
-      }
+      name: "",
+      pass: ""
     };
   },
   mounted() {},
-  methods: {
-    login(){
-
-      reqLogin(this.user).then(d=>{
-        if(d.data.code===200){
-          Toast(d.data.msg);
-          localStorage.setItem('isLogin',1);
-          localStorage.setItem('userInfo',JSON.stringify(d.data.list))
-          this.$router.push('/index')
-        }
-      })
-    }
-  }
+  methods: {}
 };
 </script>
 
-<style lang="stylus" scoped>
-@import '../../stylus/index.styl';
-
-.login {
-  padding-top: 1rem;
-  margin: 0 0.2rem;
+<style scoped>
+* {
+  margin: 0;
+  padding: 0;
 }
-
-p {
-  width: 100%;
-  color: $font-color2;
-  font-size: $p;
+.back {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to right, #553445, #433953, #313d60);
 }
-
-input {
-  width: 100%;
-  color: $font-color2;
-  margin: 0.5rem 0;
-  border: 1px solid $font-color2;
+.con {
+  width: 500px;
+  height: 250px;
+  background: #ffffff;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20px;
 }
-
-button {
-  width: 100%;
-  background: $primary;
-  color: $font-color4;
-  border-radius: 5%;
-  border: none;
-  line-height: 0.5rem;
+h2 {
+  line-height: 70px;
 }
-
-.reg {
-  text-align: right;
-  margin: $p $h1 0 0;
-  display: block;
-  color: $font-color2;
+.el-input {
+  width: 450px;
+  margin-bottom: 20px;
 }
 </style>

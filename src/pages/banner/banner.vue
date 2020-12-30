@@ -9,7 +9,7 @@
 <script>
 import vList from "./components/list";
 import vAdd from "./components/add";
-import { reqCateList } from "../../utils/http";
+import { reqBannerList } from "../../utils/http";
 export default {
   components: {
     vList,
@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     init() {
-      reqCateList({istree:true}).then(res => {
+      reqBannerList({istree:true}).then(res => {
         console.log(res);
         if (res.data.code == 200) {
           this.list = res.data.list;

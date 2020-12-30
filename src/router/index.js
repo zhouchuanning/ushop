@@ -2,65 +2,72 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
-let login = () => import('../pages/login/login.vue')
-let register = () => Promise.resolve(import('../pages/register/register.vue'))
-let index=()=>Promise.resolve(import('../pages/index/index.vue'))
-//二级路由
-let home=()=>Promise.resolve(import('../pages/home/home.vue'))
-let detail=()=>Promise.resolve(import('../pages/detail/detail.vue'))
-let cate=()=>Promise.resolve(import('../pages/cate/cate.vue'))
-let list=()=>Promise.resolve(import('../pages/list/lsit.vue'))
-let shop=()=>Promise.resolve(import('../pages/shop/shop.vue'))
+//导出二级路由
+export let indexRoutes = [
+  {
+    path: 'menu',
+    name: "菜单管理",
+    component: () => import('../pages/menu/menu.vue')
+  },
+  {
+    path: 'role',
+    name: "角色管理",
+    component: () => import('../pages/role/role.vue')
+  },
+  {
+    path: 'admin',
+    name: "管理员管理",
+    component: () => import('../pages/admin/admin.vue')
+  },
+  {
+    path: 'cate',
+    name: '商品分类',
+    component: () => import('../pages/cate/cate.vue')
+  },
+  {
+    path:'member',
+    name:'会员管理',
+    component:()=>import('../pages/member/member.vue')
+  },
+  {
+    path:'banner',
+    name:'轮播图管理',
+    component:()=>import('../pages/banner/banner.vue')
+  },
+  {
+    path:'specs',
+    name:'商品规格',
+    component:()=>import('../pages/specs/specs.vue')
+  },
+  {
+    path:'goods',
+    name:'商品管理',
+    component:()=>import('../pages/goods/goods.vue')
+  },
+  {
+    path:'seckill',
+    name:"秒杀活动",
+    component:()=>import('../pages/seckill/seckill.vue')
+  }
+]
+
 export default new Router({
   routes: [
     {
       path: '/login',
-      name: '登录',
-      component: login
+      component: () => import('../pages/login/login.vue')
     },
     {
-      path: '/register',
-      name: '注册',
-      component: register
-    },
-    //大首页
-    {
-      path:'/index',
-      component:index,
-      children:[
+      path: '/',
+      component: () => import('../pages/index/index.vue'),
+      children: [
         {
-          path:'home',
-          name:'首页',
-          component:home,
+          path: '',
+          component: () => import('../pages/home/home.vue')
         },
-        {
-          path:'cate',
-          name:'分类',
-          component:cate
-        },
-        {
-          path:'shop',
-          name:'购物车',
-          component:shop
-        },
-        {
-          path:'',
-          redirect:'home'
-        }
+        ...indexRoutes
       ]
-    },
-    {
-      path:'/detail',
-      name:'详情',
-      component:detail
-    },
-    {
-      path:'/list',
-      component:list
-    },
-    {
-      path: "*",
-      redirect: 'login'
+
     }
   ]
 })

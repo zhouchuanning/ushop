@@ -1,28 +1,95 @@
 <template>
   <div>
-    <router-view></router-view>
-    <tab-bar></tab-bar>
+    <el-container class="index">
+      <el-aside width="200px">
+        <el-menu
+          default-active="2"
+          class="el-menu-vertical-demo"
+          background-color="#20222a"
+          text-color="#fff"
+          active-text-color="#ffd04b"
+          unique-opened
+          router
+        >
+          <el-menu-item index="/">
+            <i class="el-icon-menu"></i>
+            <span slot="title">首页</span>
+          </el-menu-item>
+          <el-submenu index="1">
+            <template slot="title">
+              <i class="el-icon-s-tools"></i>
+              <span>系统管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/menu">菜单管理</el-menu-item>
+              <el-menu-item index="/role">角色管理</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item index="/admin">管理员管理</el-menu-item>
+          </el-submenu>
+          <el-submenu index="3">
+            <template slot="title">
+              <i class="el-icon-s-help"></i>
+              <span>商城管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/cate">商品分类</el-menu-item>
+              <el-menu-item index="/specs">商品规格</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item index="/goods">商品管理</el-menu-item>
+            <el-menu-item index="/member">会员管理</el-menu-item>
+            <el-menu-item index="/banner">轮播图管理</el-menu-item>
+            <el-menu-item index="/seckill">秒杀活动</el-menu-item>
+          </el-submenu>
+        </el-menu>
+      </el-aside>
+      <el-container>
+        <el-header>Header</el-header>
+        <el-main>
+          <!-- 面包屑 -->
+          <el-breadcrumb separator="/" v-if="$route.name">
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+            <el-breadcrumb-item>{{$route.name}}</el-breadcrumb-item>
+          </el-breadcrumb>
+          <!-- 二级路由 -->
+          <router-view class="con"></router-view>
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
 <script>
-import tabBar from '@/components/tabBar'
 export default {
-  components: {
-    tabBar,
-  },
+  name: "index",
+  components: {},
   directives: {},
   data() {
-    return {
-      nav:[
-        {}
-      ]
-    };
+    return {};
   },
   mounted() {},
   methods: {}
 };
 </script>
 
-<style lang="stylus" scoped>
+<style scoped>
+.index {
+  height: 100vh;
+}
+.el-header {
+  background-color: #b3c0d1;
+  color: #333;
+  line-height: 60px;
+}
+
+.el-aside {
+  background-color: #20222a;
+  color: #333;
+}
+
+.el-main {
+  color: #333;
+}
+.con{
+  padding-top: 20px;
+}
 </style>
