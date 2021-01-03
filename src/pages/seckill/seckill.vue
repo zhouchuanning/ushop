@@ -1,24 +1,27 @@
 <template>
   <div>
     <el-button type="primary" round @click="willadd">添加</el-button>
-    <v-list :list="list" @init="init" @edit="edit($event)" class="con"></v-list>
-    <v-add :info="info" @init="init" :list="list" ref="add"></v-add>
+    <v-list @edit="edit($event)" class="con"></v-list>
+    <v-add :info="info" ref="add"></v-add>
   </div>
 </template>
 
 <script>
 import vList from "./components/list";
 import vAdd from "./components/add";
-import { reqCateList } from "../../utils/http";
+import { mapActions, mapGetters } from "vuex";
 export default {
   components: {
     vList,
     vAdd
   },
-  directives: {},
+  computed: {
+    ...mapGetters({
+      list: "seck/list"
+    })
+  },
   data() {
     return {
-      list: [],
       info: {
         isshow: false,
         isadd: false
@@ -26,17 +29,11 @@ export default {
     };
   },
   mounted() {
-    this.init();
   },
   methods: {
-    init() {
-      reqCateList({istree:true}).then(res => {
-        console.log(res);
-        if (res.data.code == 200) {
-          this.list = res.data.list;
-        }
-      });
-    },
+    ...mapActions({
+      reqList: "seck/reqList"
+    }),
     willadd() {
       this.info.isshow = true;
       this.info.isadd = true;

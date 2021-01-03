@@ -1,57 +1,70 @@
 <template>
   <div>
-    <div class="logo">
-      <img :src="logo" alt="">
-      <input type="text" value="搜索">
-    </div>
-    <v-banner></v-banner>
-    <v-limit></v-limit>
-    <v-list></v-list>
+    <div id="main"></div>
   </div>
 </template>
 
 <script>
-import vBanner from './components/banner'
-import vLimit from './components/limit'
-import logo from '../../assets/img/img/home/logo.jpg'
-import vList from './components/list'
+import { mapActions, mapGetters } from "vuex";
 export default {
- components:{
-    vBanner,
-    vLimit,
-    vList
+  computed: {
+    ...mapGetters({
+      list: "cate/list"
+    })
   },
   data() {
-    return {
-      logo
-    };
+    return {};
   },
   mounted() {
-
+    this.reqList();
   },
   methods: {
-
+    ...mapActions({
+      reqList: "cate/reqList"
+    })
   },
+  watch: {
+    list: {
+      handler() {
+        if (this.list.length > 0) {
+          let mychart = require("echarts").init(
+            document.getElementById("main")
+          );
+          var option = {
+            title: {
+              text: "分类数量"
+            },
+            tooltip: {},
+            legend: {
+              data: ["分类数量"]
+            },
+            xAxis: {
+              data: this.list.map(item => item.catename)
+            },
+            yAxis: {},
+            series: [
+              {
+                name: "分类数量",
+                type: "line",
+                data: this.list.map(item =>
+                  item.children ? item.children.length : 0
+                )
+              }
+            ]
+          };
+          mychart.setOption(option);
+        }
+      },
+      deep: true
+    }
+  }
 };
 </script>
 
-<style lang="stylus" scoped>
-@import '../../stylus/index.styl';
-.logo{
-  width 100vw
-  height 0.8rem
-}
-img{
-  width 2rem
-  height 0.4rem
-  margin  .2rem 0 0 .2rem
-}
-input {
-  float right
-  margin .1rem .2rem 0 0
-  line-height .6rem
-  background $font-color3
-  border-radius  0.2rem
-  text-indent .2rem
+<style  scoped>
+#main {
+  width: 80%;
+  height: 500px;
+  margin: 20px auto;
 }
 </style>

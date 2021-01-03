@@ -42,7 +42,7 @@ exports.cssLoaders = function (options) {
       })
     }
 
-    // Extract CSS when that option is specified
+    // Extract CSS when that option is specsfied
     // (which is the case during production build)
     if (options.extract) {
       return ExtractTextPlugin.extract({

@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-button type="primary" round @click="willadd">添加</el-button>
-    <v-list :list="list" @init="init" @edit="edit($event)" class="con"></v-list>
+    <v-list :list="list" @init="init" @edit="edit($event)" class='con'></v-list>
     <v-add :info="info" @init="init" :list="list" ref="add"></v-add>
   </div>
 </template>
@@ -9,7 +9,7 @@
 <script>
 import vList from "./components/list";
 import vAdd from "./components/add";
-import { reqCateList } from "../../utils/http";
+import { reqMuneList } from "../../utils/http";
 export default {
   components: {
     vList,
@@ -30,8 +30,8 @@ export default {
   },
   methods: {
     init() {
-      reqCateList({istree:true}).then(res => {
-        console.log(res);
+      reqMuneList().then(res => {
+        console.log(res)
         if (res.data.code == 200) {
           this.list = res.data.list;
         }
@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style scoped>
-.con {
+.con{
   padding-top: 20px;
 }
 </style>

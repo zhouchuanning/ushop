@@ -1,19 +1,18 @@
 <template>
   <div>
-    <el-button type="primary" round @click="willadd">添加</el-button>
     <v-list :list="list" @init="init" @edit="edit($event)" class="con"></v-list>
-    <v-add :info="info" @init="init" :list="list" ref="add"></v-add>
+    <v-form :info="info" @init="init" :list="list" ref="add"></v-form>
   </div>
 </template>
 
 <script>
 import vList from "./components/list";
-import vAdd from "./components/add";
-import { reqCateList } from "../../utils/http";
+import vForm from "./components/form";
+import { reqMemberList } from "../../utils/http";
 export default {
   components: {
     vList,
-    vAdd
+    vForm
   },
   directives: {},
   data() {
@@ -21,7 +20,6 @@ export default {
       list: [],
       info: {
         isshow: false,
-        isadd: false
       }
     };
   },
@@ -30,21 +28,16 @@ export default {
   },
   methods: {
     init() {
-      reqCateList({istree:true}).then(res => {
+      reqMemberList().then(res => {
         console.log(res);
         if (res.data.code == 200) {
           this.list = res.data.list;
         }
       });
     },
-    willadd() {
+    edit(uid) {
       this.info.isshow = true;
-      this.info.isadd = true;
-    },
-    edit(id) {
-      this.info.isshow = true;
-      this.info.isadd = false;
-      this.$refs.add.getOne(id);
+      this.$refs.add.getOne(uid);
     }
   }
 };
