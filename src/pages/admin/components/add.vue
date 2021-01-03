@@ -3,10 +3,18 @@
     <el-dialog
       :title="info.isadd ? '添加管理员' : '编辑管理员'"
       :visible.sync="info.isshow"
+<<<<<<< HEAD
       @closed="cancel"
     >
       <el-form :model="user" :rules="rules">
         <el-form-item label="所属角色" label-width="100px" prop="roleid">
+=======
+      
+      @closed="cancel"
+    >
+      <el-form :model="user">
+        <el-form-item label="所属角色" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-select v-model="user.roleid">
             <el-option
               v-for="item in roleList"
@@ -16,10 +24,17 @@
             ></el-option>
           </el-select>
         </el-form-item>
+<<<<<<< HEAD
         <el-form-item label="用户名称" label-width="100px" prop="username">
           <el-input v-model="user.username" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="密码" label-width="100px" prop="password">
+=======
+        <el-form-item label="用户名称" label-width="100px">
+          <el-input v-model="user.username" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-input v-model="user.password" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="状态" label-width="100px">
@@ -64,6 +79,7 @@ export default {
         password: "",
         status: 1
       },
+<<<<<<< HEAD
       roleList: [],
       rules: {
         roleid: [
@@ -78,6 +94,9 @@ export default {
           { min: 2, max: 5, message: "长度在 2 到 5 个字符", trigger: "blur" }
         ]
       }
+=======
+      roleList: []
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
     };
   },
   mounted() {
@@ -124,6 +143,10 @@ export default {
           this.user = res.data.list;
           this.user.password = "";
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
       });
     },
     //修改

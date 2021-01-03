@@ -6,8 +6,13 @@
       
       @closed="cancel"
     >
+<<<<<<< HEAD
       <el-form :model="user" :rules="rules">
         <el-form-item label="规格名称" label-width="100px" prop="specsname">
+=======
+      <el-form :model="user">
+        <el-form-item label="规格名称" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-input v-model="user.specsname"></el-input>
         </el-form-item>
         <el-form-item
@@ -67,12 +72,16 @@ export default {
         attrs: "[]",
         status: 1
       },
+<<<<<<< HEAD
       attrsArr: [{ values: "" }],
       rules:{
         specsname:[
               { required: true, message: '请输规格名称', trigger: 'blur' },
         ]
       }
+=======
+      attrsArr: [{ values: "" }]
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
     };
   },
   computed: {

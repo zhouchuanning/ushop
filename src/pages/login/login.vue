@@ -2,6 +2,7 @@
   <div class="back">
     <div class="con">
       <h2>登录</h2>
+<<<<<<< HEAD
       <el-form :model="user" :rules="rules">
         <el-form-item prop="username">
           <el-input
@@ -21,19 +22,28 @@
       </el-form>
 
       <el-button type="primary" @click="login" round>登录</el-button>
+=======
+      <el-input v-model="name" placeholder="请输入账户" clearable></el-input>
+      <el-input placeholder="请输入密码" v-model="pass" show-password clearable></el-input>
+      <el-button type="primary" round>登录</el-button>
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
     </div>
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import { reqLogin } from "../../utils/http";
 import { mapActions } from "vuex";
+=======
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
 export default {
   name: "login",
   components: {},
   directives: {},
   data() {
     return {
+<<<<<<< HEAD
       user: {
         username: "",
         password: ""
@@ -64,6 +74,14 @@ export default {
       });
     }
   }
+=======
+      name: "",
+      pass: ""
+    };
+  },
+  mounted() {},
+  methods: {}
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
 };
 </script>
 

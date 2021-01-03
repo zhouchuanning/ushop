@@ -6,8 +6,13 @@
       
       @closed="cancel"
     >
+<<<<<<< HEAD
       <el-form :model="user" :rules="rules">
         <el-form-item label="角色名称" label-width="100px" prop="rolename">
+=======
+      <el-form :model="user">
+        <el-form-item label="角色名称" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-input v-model="user.rolename" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="角色权限" label-width="100px">
@@ -63,12 +68,16 @@ export default {
         menus: "",
         status: 1
       },
+<<<<<<< HEAD
       menuList: [],
       rules:{
         rolename:[
            { required: true, message: "请输入角色名称", trigger: "blur" },
         ]
       }
+=======
+      menuList: []
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
     };
   },
   mounted() {

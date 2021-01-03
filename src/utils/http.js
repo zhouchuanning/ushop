@@ -1,6 +1,7 @@
 import axios from 'axios'
 import qs from "qs"
 import Vue from 'vue'
+<<<<<<< HEAD
 import router from '../router'
 import { erroralert } from './alert'
 import store from '../store'
@@ -12,6 +13,13 @@ Vue.prototype.$pre = "http://localhost:3000"
 // let baseUrl=""
 // Vue.prototype.$pre=""
 
+=======
+import { erroralert } from './alert'
+
+let baseUrl = '/api'
+Vue.prototype.$pre = 'http://localhost:3000'
+
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
 //响应拦截
 axios.interceptors.response.use(res => {
     console.group('本次请求地址是：' + res.config.url)
@@ -23,6 +31,7 @@ axios.interceptors.response.use(res => {
     if (!res.data.list) {
         res.data.list = []
     }
+<<<<<<< HEAD
     if (res.data.msg === '登录已过期或访问权限受限') {
         store.dispatch('changeUser', {})
         router.push('/login')
@@ -36,6 +45,10 @@ axios.interceptors.request.use(config => {
     return config
 })
 
+=======
+    return res
+})
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
 //带有文件参数转换
 function dataToFromData(user) {
     let data = new FormData()
@@ -44,6 +57,7 @@ function dataToFromData(user) {
     }
     return data
 }
+<<<<<<< HEAD
 //登录
 export let reqLogin = (user) => {
     return axios({
@@ -52,6 +66,9 @@ export let reqLogin = (user) => {
         data: qs.stringify(user)
     })
 }
+=======
+
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
 //菜单列表
 export let reqMuneList = () => {
     return axios({

@@ -6,8 +6,13 @@
       @opened="opened"
       @closed="cancel"
     >
+<<<<<<< HEAD
       <el-form :model="user" :rules="rules">
         <el-form-item label="一级分类" label-width="100px" prop="first_cateid">
+=======
+      <el-form :model="user">
+        <el-form-item label="一级分类" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-select v-model="user.first_cateid" @change="changeFirstCateId">
             <el-option
               v-for="item in cateList"
@@ -17,7 +22,11 @@
             ></el-option>
           </el-select>
         </el-form-item>
+<<<<<<< HEAD
         <el-form-item label="二级分类" label-width="100px" prop="second_cateid">
+=======
+        <el-form-item label="二级分类" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-select v-model="user.second_cateid">
             <el-option
               v-for="item in secondCateList"
@@ -27,6 +36,7 @@
             ></el-option>
           </el-select>
         </el-form-item>
+<<<<<<< HEAD
         <el-form-item label="商品名称" label-width="100px" prop="goodsname">
           <el-input v-model="user.goodsname"></el-input>
         </el-form-item>
@@ -34,6 +44,15 @@
           <el-input v-model="user.price"></el-input>
         </el-form-item>
         <el-form-item label="市场价格" label-width="100px" prop="market_price">
+=======
+        <el-form-item label="商品名称" label-width="100px">
+          <el-input v-model="user.goodsname"></el-input>
+        </el-form-item>
+        <el-form-item label="价格" label-width="100px">
+          <el-input v-model="user.price"></el-input>
+        </el-form-item>
+        <el-form-item label="市场价格" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-input v-model="user.market_price"></el-input>
         </el-form-item>
         <el-form-item label="图片" label-width="100px">
@@ -47,7 +66,11 @@
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
           </el-upload>
         </el-form-item>
+<<<<<<< HEAD
         <el-form-item label="商品规格" label-width="100px" prop="specsid">
+=======
+        <el-form-item label="商品规格" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-select v-model="user.specsid" @change="changeSpecsId">
             <el-option
               v-for="item in specsList"
@@ -57,6 +80,7 @@
             ></el-option>
           </el-select>
         </el-form-item>
+<<<<<<< HEAD
         <el-form-item label="规格属性" label-width="80px" prop="specsattr">
           <el-select v-model="user.specsattr" multiple>
             <el-option
@@ -64,6 +88,16 @@
               :key="index"
               :label="item"
               :value="item"
+=======
+        <el-form-item label="规格属性" label-width="80px">
+          <el-select v-model="user.specsattr" multiple>
+            <el-option
+              v-for="(item,index) in showSpecsAttr"
+              :key="index"
+              :label="item"
+              :value="item"
+              
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
             ></el-option>
           </el-select>
         </el-form-item>
@@ -93,6 +127,10 @@
         >
         <el-button type="primary" v-else @click="updata">修改</el-button>
       </span>
+<<<<<<< HEAD
+=======
+      
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
     </el-dialog>
   </div>
 </template>
@@ -127,6 +165,7 @@ export default {
       },
       imgUrl: "",
       secondCateList: [],
+<<<<<<< HEAD
       showSpecsAttr: [],
       rules: {
         first_cateid: [
@@ -151,6 +190,9 @@ export default {
           { required: true, message: "请选择规格", trigger: "change" }
         ]
       }
+=======
+      showSpecsAttr: []
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
     };
   },
   computed: {
@@ -188,9 +230,16 @@ export default {
       this.getShowSpecsAttr();
     },
     getShowSpecsAttr() {
+<<<<<<< HEAD
       let obj = this.specsList.find(item => item.id == this.user.specsid);
       this.showSpecsAttr = obj ? obj.attrs : [];
       console.log(this.showSpecsAttr);
+=======
+      
+      let obj = this.specsList.find(item => item.id == this.user.specsid);
+      this.showSpecsAttr = obj ? obj.attrs : [];
+      console.log(this.showSpecsAttr)
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
     },
     //关闭弹框
     cancel() {

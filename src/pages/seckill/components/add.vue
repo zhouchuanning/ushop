@@ -5,6 +5,7 @@
       :visible.sync="info.isshow"
       @closed="cancel"
     >
+<<<<<<< HEAD
       <el-form :model="user" :rules="rules">
         <el-form-item label="活动名称" label-width="100px" prop="title">
           <el-input v-model="user.title"></el-input>
@@ -13,17 +14,33 @@
           <div class="block">
             <el-date-picker
               v-model="value"
+=======
+      <el-form :model="user">
+        <el-form-item label="活动名称" label-width="100px">
+          <el-input v-model="user.title"></el-input>
+        </el-form-item>
+        <el-form-item label-width="100px" label="活动期限">
+          <div class="block">
+            <el-date-picker
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
               type="datetimerange"
               range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
+<<<<<<< HEAD
               value-format="timestamp"
               @change="changeTime"
+=======
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
             >
             </el-date-picker>
           </div>
         </el-form-item>
+<<<<<<< HEAD
         <el-form-item label="一级分类" label-width="100px" prop="first_cateid">
+=======
+        <el-form-item label="一级分类" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-select v-model="user.first_cateid" @change="changeFirstCateId">
             <el-option
               v-for="item in cateList"
@@ -33,7 +50,11 @@
             ></el-option>
           </el-select>
         </el-form-item>
+<<<<<<< HEAD
         <el-form-item label="二级分类" label-width="100px" prop="second_cateid">
+=======
+        <el-form-item label="二级分类" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-select v-model="user.second_cateid" @change="changeSecondList">
             <el-option
               v-for="item in secondCateList"
@@ -43,13 +64,22 @@
             ></el-option>
           </el-select>
         </el-form-item>
+<<<<<<< HEAD
         <el-form-item label="商品" label-width="100px" prop="goodsid">
+=======
+        <el-form-item label="商品" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-select v-model="user.goodsid">
             <el-option
               v-for="item in goodsCateList"
               :key="item.id"
+<<<<<<< HEAD
               :label="item.goodsname"
               :value="item.id"
+=======
+              :label="item.goodsCateList"
+              :value="item.goodsname"
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
             ></el-option>
           </el-select>
         </el-form-item>
@@ -96,6 +126,7 @@ export default {
         status: 1
       },
       goodsCateList: [],
+<<<<<<< HEAD
       secondCateList: [],
       value: [],
       rules: {
@@ -104,6 +135,9 @@ export default {
         second_cateid: [{ required: true, message: "请输入商品分类", trigger: "change" }],
         goodsid: [{ required: true, message: "请选择商品", trigger: "change" }],
       }
+=======
+      secondCateList: []
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
     };
   },
   computed: {
@@ -122,6 +156,7 @@ export default {
     ...mapActions({
       reqCateList: "cate/reqList",
       reqGoodsList: "goods/reqList",
+<<<<<<< HEAD
       reqList: "seck/reqList"
     }),
     changeTime() {
@@ -131,6 +166,12 @@ export default {
     changeFirstCateId() {
       this.user.second_cateid = "";
       this.user.goodsid = "";
+=======
+      reqList: "seck/list"
+    }),
+    changeFirstCateId() {
+      this.user.second_cateid = "";
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
       this.getSecondList();
     },
     getSecondList() {
@@ -174,7 +215,10 @@ export default {
       };
       this.goodsCateList = [];
       this.secondCateList = [];
+<<<<<<< HEAD
       this.value = [];
+=======
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
     },
     //添加
     add() {
@@ -193,7 +237,10 @@ export default {
         if ((res.data.code = 200)) {
           this.user = res.data.list;
           this.user.id = id;
+<<<<<<< HEAD
           this.value = [this.user.begintime, this.user.endtime];
+=======
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           this.getGoodsList();
           this.getSecondList();
         }
@@ -206,7 +253,12 @@ export default {
           successalert(res.data.msg);
           this.cancel();
           this.empty();
+<<<<<<< HEAD
           this.reqList();
+=======
+          this.getGoodsList();
+          this.getSecondList();
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
         }
       });
     }

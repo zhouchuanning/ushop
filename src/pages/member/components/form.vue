@@ -1,14 +1,28 @@
 <template>
   <div>
+<<<<<<< HEAD
     <el-dialog title="编辑会员" :visible.sync="info.isshow" @closed="cancel">
       <el-form :model="user" :rules="rules">
+=======
+    <el-dialog
+      title="编辑会员"
+      :visible.sync="info.isshow"
+      
+      @closed="cancel"
+    >
+      <el-form :model="user">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
         <el-form-item label="手机号" label-width="100px">
           <el-input v-model="user.phone" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="昵称" label-width="100px">
           <el-input v-model="user.nickname" autocomplete="off"></el-input>
         </el-form-item>
+<<<<<<< HEAD
         <el-form-item label="密码" label-width="100px" prop="password">
+=======
+        <el-form-item label="密码" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-input v-model="user.password" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="状态" label-width="100px">
@@ -39,6 +53,7 @@ export default {
         uid: "",
         nickname: "",
         phone: "",
+<<<<<<< HEAD
         password: "",
         status: 1
       },
@@ -47,6 +62,10 @@ export default {
           { required: true, message: "请输入密码", trigger: "blur" },
           { min: 2, max: 5, message: "长度在 2 到 5 个字符", trigger: "blur" }
         ]
+=======
+        password: '',
+        status: 1
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
       }
     };
   },

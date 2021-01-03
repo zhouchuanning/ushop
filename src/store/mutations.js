@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 export let state = {
     userInfo: sessionStorage.getItem('userInfo') ? JSON.parse(sessionStorage.getItem('userInfo')) : {}
 }
@@ -16,3 +17,8 @@ export let mutations = {
         }
     }
 }
+=======
+export let state = {}
+export let getters = {}
+export let mutations = {}
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd

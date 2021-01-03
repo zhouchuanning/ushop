@@ -85,7 +85,60 @@ export let indexRoutes = [
   }
 ]
 
+<<<<<<< HEAD
 let router = new Router({
+=======
+//导出二级路由
+export let indexRoutes = [
+  {
+    path: 'menu',
+    name: "菜单管理",
+    component: () => import('../pages/menu/menu.vue')
+  },
+  {
+    path: 'role',
+    name: "角色管理",
+    component: () => import('../pages/role/role.vue')
+  },
+  {
+    path: 'admin',
+    name: "管理员管理",
+    component: () => import('../pages/admin/admin.vue')
+  },
+  {
+    path: 'cate',
+    name: '商品分类',
+    component: () => import('../pages/cate/cate.vue')
+  },
+  {
+    path:'member',
+    name:'会员管理',
+    component:()=>import('../pages/member/member.vue')
+  },
+  {
+    path:'banner',
+    name:'轮播图管理',
+    component:()=>import('../pages/banner/banner.vue')
+  },
+  {
+    path:'specs',
+    name:'商品规格',
+    component:()=>import('../pages/specs/specs.vue')
+  },
+  {
+    path:'goods',
+    name:'商品管理',
+    component:()=>import('../pages/goods/goods.vue')
+  },
+  {
+    path:'seckill',
+    name:"秒杀活动",
+    component:()=>import('../pages/seckill/seckill.vue')
+  }
+]
+
+export default new Router({
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
   routes: [
     {
       path: '/login',

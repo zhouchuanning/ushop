@@ -3,10 +3,18 @@
     <el-dialog
       :title="info.isadd ? '添加分类' : '编辑分类'"
       :visible.sync="info.isshow"
+<<<<<<< HEAD
       @closed="cancel"
     >
       <el-form :model="user" :rules="rules">
         <el-form-item label="上级分类" label-width="100px" prop="pid">
+=======
+      
+      @closed="cancel"
+    >
+      <el-form :model="user">
+        <el-form-item label="上级分类" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-select v-model="user.pid">
             <el-option :value="0" label="顶级分类"></el-option>
             <el-option
@@ -17,7 +25,11 @@
             ></el-option>
           </el-select>
         </el-form-item>
+<<<<<<< HEAD
         <el-form-item label="分类名称" label-width="100px" prop="catename">
+=======
+        <el-form-item label="分类名称" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-input v-model="user.catename" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="图片" label-width="100px">
@@ -64,6 +76,7 @@ export default {
         catename: "",
         img: null,
         status: 1
+<<<<<<< HEAD
       },
       rules: {
         pid: [
@@ -71,6 +84,8 @@ export default {
         catename: [
           { required: true, message: "请输入商品分类名称", trigger: "blur" }
         ]
+=======
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
       }
     };
   },

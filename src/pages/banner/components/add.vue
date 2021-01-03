@@ -6,8 +6,13 @@
       
       @closed="cancel"
     >
+<<<<<<< HEAD
       <el-form :model="user" :rules="rules">
         <el-form-item label="标题" label-width="100px" prop="title">
+=======
+      <el-form :model="user">
+        <el-form-item label="标题" label-width="100px">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-input v-model="user.title" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="图片" label-width="100px">
@@ -57,11 +62,14 @@ export default {
         title: "",
         img: null,
         status: 1
+<<<<<<< HEAD
       },
       rules:{
         title:[
           { required: true, message: "请输入轮播图名称", trigger: "blur" },
         ]
+=======
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
       }
     };
   },

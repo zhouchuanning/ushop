@@ -1,6 +1,7 @@
 <template>
   <div>
     <el-dialog
+<<<<<<< HEAD
       :title="info.isadd ? '添加菜单' : '编辑菜单'"
       :visible.sync="info.isshow"
       @closed="cancel"
@@ -11,6 +12,19 @@
         </el-form-item>
         <el-form-item label="上级菜单" label-width="100px" prop="pid">
           <el-select v-model="user.pid" @change="changePid" >
+=======
+      :title="info.isadd?'添加菜单':'编辑菜单'"
+      :visible.sync="info.isshow"
+      
+      @closed="cancel"
+    >
+      <el-form  :model="user">
+        <el-form-item label="菜单名称" label-width="100px">
+          <el-input v-model="user.title"></el-input>
+        </el-form-item>
+        <el-form-item label="上级菜单" label-width="100px">
+          <el-select v-model="user.pid" @change="changePid">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
             <el-option label="顶级菜单" :value="0"></el-option>
             <el-option
               v-for="item in list"
@@ -35,7 +49,11 @@
             ></el-option>
           </el-select>
         </el-form-item>
+<<<<<<< HEAD
         <el-form-item label-width="100px" label="菜单地址" prop="url">
+=======
+        <el-form-item label-width="100px" label="菜单地址">
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
           <el-select v-model="user.url">
             <el-option
               v-for="item in indexRoutes"
@@ -80,7 +98,11 @@ export default {
   data() {
     return {
       user: {
+<<<<<<< HEAD
         pid: 0,
+=======
+        pad: 0,
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
         title: "",
         icon: "",
         type: 1,
@@ -94,12 +116,16 @@ export default {
         "el-icon-s-platform",
         "el-icon-s-order"
       ],
+<<<<<<< HEAD
       indexRoutes,
       rules: {
         title: [{ required: true, message: "请输入菜单名称", trigger: "blur" }],
         pid: [{ required: true, message: "请选择上级菜单", trigger: "change" }],
         url: [{ required: true, message: "请选择菜单地址", trigger: "change" }]
       }
+=======
+      indexRoutes
+>>>>>>> 4787c507a4e10a7b43642c42bac03ceb378a68fd
     };
   },
   mounted() {},
